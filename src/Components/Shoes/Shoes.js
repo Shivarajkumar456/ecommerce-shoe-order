@@ -15,7 +15,7 @@ const Shoes = () => {
         crtContxt.addToCart(item,size);
     }
     
-    const menuOfTshirts = crtContxt.menuItems.map((item) => (
+    const brandsOfShoes = crtContxt.menuItems.map((item) => (
         <ShoeItem
             key={item.id}
             name={item.name}
@@ -32,7 +32,7 @@ const Shoes = () => {
 
     return (
         <React.Fragment>
-            {menuOfTshirts}
+            {brandsOfShoes}
         </React.Fragment>
 
     )
