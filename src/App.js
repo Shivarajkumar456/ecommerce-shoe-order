@@ -1,24 +1,31 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
+import CartProvider from './store/CartProvider';
 import './App.css';
+import ShoeForm from './Components/Shoes/ShoesForm'
+import Header from './Components/Header/Header';
+import Shoes from './Components/Shoes/Shoes';
+import Cart from './Components/Cart/Cart';
 
 function App() {
+  const [showCart, setShowCart] = useState(false);
+
+  const cartOpenHandler = (event) => {
+    event.preventDefault();
+    setShowCart(true);
+  }
+
+  const closeHandler = (event) => {
+    event.preventDefault();
+    setShowCart(false);
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <CartProvider>
+      <Header onClick={cartOpenHandler} />
+      <ShoeForm />
+      {showCart && <Cart onClose={closeHandler} />}
+      <Shoes />
+    </CartProvider>
   );
 }
 
